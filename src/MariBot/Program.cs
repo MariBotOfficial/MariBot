@@ -1,7 +1,7 @@
 var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((hostBuilder, services) =>
     {
-        services.AddOptions<BotOptions>().Bind(hostBuilder.Configuration.GetSection("BotOptions"));
+        services.Configure<BotOptions>(hostBuilder.Configuration.GetSection(BotOptions.Bot));
     })
     .Build();
 
