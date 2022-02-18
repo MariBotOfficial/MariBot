@@ -1,9 +1,7 @@
-using MariBot;
-
 var host = Host.CreateDefaultBuilder(args)
-    .ConfigureServices(services =>
+    .ConfigureServices((hostBuilder, services) =>
     {
-        services.AddHostedService<Worker>();
+        services.AddOptions<BotOptions>().Bind(hostBuilder.Configuration.GetSection("BotOptions"));
     })
     .Build();
 
