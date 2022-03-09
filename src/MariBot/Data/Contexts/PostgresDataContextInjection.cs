@@ -21,6 +21,7 @@ public static class PostgresDataContextInjection
             {
                 _ = postgresOptions.UseRelationalNulls();
             });
+            _ = options.UseSnakeCaseNamingConvention();
         });
 
         return services;
