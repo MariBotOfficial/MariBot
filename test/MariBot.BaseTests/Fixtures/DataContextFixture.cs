@@ -3,27 +3,22 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Xunit;
 
-namespace MariBot.BaseTests;
+namespace MariBot.BaseTests.Fixtures;
 
 public class DataContextFixture : IAsyncLifetime
 {
-    private readonly string _databaseName;
-
-    public DataContextFixture() : this($"maribot_test_{Guid.NewGuid()}")
+    public DataContextFixture()
     {
     }
 
-    public DataContextFixture(string databaseName)
-    {
-        _databaseName = databaseName;
-    }
+    public string DatabaseName { get; set; } = $"maribot_test_{Guid.NewGuid()}";
 
     public DataContext Context { get; private set; } = null!;
 
     public async Task InitializeAsync()
     {
         var optionsBuilder = new DbContextOptionsBuilder<DataContext>()
-            .UseInMemoryDatabase(_databaseName, options =>
+            .UseInMemoryDatabase(DatabaseName, options =>
             {
                 _ = options.EnableNullChecks();
                 ApplyInMemoryDatabaseOptions(options);
@@ -34,23 +29,23 @@ public class DataContextFixture : IAsyncLifetime
 
         Context = new DataContext(optionsBuilder.Options);
 
-        await Context.Database.MigrateAsync();
+        _ = await Context.Database.EnsureCreatedAsync();
 
         await SeedAsync();
 
         _ = await Context.SaveChangesAsync();
     }
 
-    public virtual void ApplyConfiguration(DbContextOptionsBuilder<DataContext> optionsBuilder)
+    protected virtual void ApplyConfiguration(DbContextOptionsBuilder<DataContext> optionsBuilder)
     {
     }
 
-    public virtual void ApplyInMemoryDatabaseOptions(InMemoryDbContextOptionsBuilder options)
+    protected virtual void ApplyInMemoryDatabaseOptions(InMemoryDbContextOptionsBuilder options)
     {
 
     }
 
-    public virtual Task SeedAsync()
+    protected virtual Task SeedAsync()
     {
         return Task.CompletedTask;
     }

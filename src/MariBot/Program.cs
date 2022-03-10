@@ -1,4 +1,5 @@
 using MariBot.Data.Contexts;
+using MariBot.Data.Repositories;
 using MariBot.DI.DiscordNet;
 using MariBot.Services.Hosted;
 
@@ -8,6 +9,7 @@ var host = Host.CreateDefaultBuilder(args)
         services.Configure<BotOptions>(hostBuilder.Configuration.GetSection(BotOptions.Bot));
 
         services.AddPostgresDataContext();
+        services.AddRepositories();
 
         services.AddDiscordNetClient();
 
