@@ -24,7 +24,7 @@ public class BaseRepositoryTest : BaseNotSharedDataContextFixtureTest
     }
 
     [Fact]
-    public async Task ShouldGetAllWhenCallGetAllAsync()
+    public async Task ListAllWhenCallGetAllAsync()
     {
         // Arrange
         var guild1 = new GuildModel(1, "guild1");
@@ -45,7 +45,7 @@ public class BaseRepositoryTest : BaseNotSharedDataContextFixtureTest
     }
 
     [Fact]
-    public async Task ShouldGetByIdWhenCallGetByIdAsync()
+    public async Task GetByIdWhenCallGetByIdAsync()
     {
         // Arrange
         var guild1 = new GuildModel(1, "guild1");
@@ -65,7 +65,7 @@ public class BaseRepositoryTest : BaseNotSharedDataContextFixtureTest
     }
 
     [Fact]
-    public async Task ShouldCreateWhenCallCreateAsyncAndTransactionIsntOpened()
+    public async Task CreatesWhenCallCreateAsyncAndTransactionIsntOpened()
     {
         // Arrange
         var guild1 = new GuildModel(1, "guild1");
@@ -81,7 +81,7 @@ public class BaseRepositoryTest : BaseNotSharedDataContextFixtureTest
     }
 
     [Fact]
-    public async Task ShouldCreateOnlyWhenCallCreateAsyncAndTransactionIsClosed()
+    public async Task CreatesOnlyWhenCallCreateAsyncAndTransactionIsClosed()
     {
         // Arrange
         var unitOfWork = new UnitOfWork(_fixture.Context);
@@ -106,7 +106,7 @@ public class BaseRepositoryTest : BaseNotSharedDataContextFixtureTest
     }
 
     [Fact]
-    public async Task ShouldUpdateWhenCallUpdateAsyncAndTransactionIsntOpened()
+    public async Task UpdatesWhenCallUpdateAsyncAndTransactionIsntOpened()
     {
         // Arrange
         var guild1 = new GuildModel(1, "guild1");
@@ -129,7 +129,7 @@ public class BaseRepositoryTest : BaseNotSharedDataContextFixtureTest
     }
 
     [Fact]
-    public async Task ShouldUpdateOnlyWhenCallUpdateAsyncAndTransactionIsClosed()
+    public async Task UpdatesOnlyWhenCallUpdateAsyncAndTransactionIsClosed()
     {
         // Arrange
         var unitOfWork = new UnitOfWork(_fixture.Context);

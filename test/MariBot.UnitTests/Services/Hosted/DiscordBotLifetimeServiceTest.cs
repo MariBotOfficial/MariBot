@@ -33,7 +33,7 @@ public class DiscordBotLifetimeServiceTest
     }
 
     [Fact]
-    public async Task ShouldCallDiscordStartWhenCallStart()
+    public async Task CallsDiscordStartWhenCallStart()
     {
         // Arrange
         var discordClientMock = GetDiscordClientMock();
@@ -48,7 +48,7 @@ public class DiscordBotLifetimeServiceTest
     }
 
     [Fact]
-    public async Task ShouldCallDiscordStopWhenCallStop()
+    public async Task CallsDiscordStopWhenCallStop()
     {
         // Arrange
         var discordClientMock = GetDiscordClientMock();
