@@ -1,5 +1,4 @@
 using MariBot.Data.Models;
-using MariBot.Data.Services;
 
 namespace MariBot.Data.Repositories;
 

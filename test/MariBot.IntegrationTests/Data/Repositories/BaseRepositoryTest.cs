@@ -4,7 +4,6 @@ using MariBot.BaseTests.Base;
 using MariBot.Data.Contexts;
 using MariBot.Data.Models;
 using MariBot.Data.Repositories;
-using MariBot.Data.Services;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
 

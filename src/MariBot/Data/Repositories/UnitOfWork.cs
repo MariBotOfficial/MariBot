@@ -1,7 +1,8 @@
 using MariBot.Data.Contexts;
+using MariBot.Data.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace MariBot.Data.Services;
+namespace MariBot.Data.Repositories;
 
 public class UnitOfWork
 {
@@ -32,8 +33,8 @@ public class UnitOfWork
 
         foreach (var entry in createdEntries)
         {
-            entry.Property("CreatedAt").CurrentValue = DateTime.UtcNow;
-            entry.Property("UpdatedAt").CurrentValue = DateTime.UtcNow;
+            entry.Property(nameof(BaseModel.CreatedAt)).CurrentValue = DateTime.UtcNow;
+            entry.Property(nameof(BaseModel.UpdatedAt)).CurrentValue = DateTime.UtcNow;
         }
 
         var updatedEntries = _context.ChangeTracker
@@ -42,7 +43,7 @@ public class UnitOfWork
 
         foreach (var entry in updatedEntries)
         {
-            entry.Property("UpdatedAt").CurrentValue = DateTime.UtcNow;
+            entry.Property(nameof(BaseModel.UpdatedAt)).CurrentValue = DateTime.UtcNow;
         }
 
         var recordsChanged = await _context.SaveChangesAsync(cancellationToken);
