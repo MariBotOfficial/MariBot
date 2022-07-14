@@ -11,7 +11,7 @@ public class UnitOfWorkTest : BaseNotSharedDataContextFixtureTest
 {
     private UnitOfWork GetUnitOfWork()
     {
-        return new UnitOfWork(_fixture.Context);
+        return new(_fixture.Context);
     }
 
     [Fact]
