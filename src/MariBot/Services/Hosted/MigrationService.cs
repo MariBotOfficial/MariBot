@@ -18,10 +18,10 @@ public class MigrationService : IHostedService
 
     public async Task StartAsync(CancellationToken cancellationToken)
     {
-        // if (_environment.IsDevelopment())
-        // {
-        //     return Task.CompletedTask;
-        // }
+        if (_environment.IsDevelopment())
+        {
+            return;
+        }
 
         await using var scope = _serviceScopeFactory.CreateAsyncScope();
         using var dbContext = scope.ServiceProvider.GetRequiredService<DataContext>();
